@@ -2,10 +2,10 @@ import { motion } from "framer-motion";
 import { useContext } from "react";
 import { AppContext } from "./RealEstateContext";
 import PropertyCard from "./PropertyCard";
-import { Star, TrendingUp, Award } from "lucide-react";
+import { Star, TrendingUp, Award, ArrowRight } from "lucide-react";
 
 /**
- * مكون العقارات المميزة - يعرض أفضل العقارات المتاحة
+ * مكون العقارات المميزة - يعرض أفضل العقارات المتاحة - تصميم احترافي
  */
 const FeaturedProperty = () => {
   const { propertydata } = useContext(AppContext);
@@ -16,8 +16,8 @@ const FeaturedProperty = () => {
     .slice(0, 6);
 
   return (
-    <section className="py-20 bg-gradient-to-b from-gray-900 to-gray-800">
-      <div className="container mx-auto px-4">
+    <section className="section-padding gradient-bg">
+      <div className="container-custom">
         {/* العنوان الرئيسي */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -25,14 +25,18 @@ const FeaturedProperty = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <Star className="w-8 h-8 text-yellow-400 fill-current" />
-            <h2 className="text-4xl md:text-5xl font-bold text-white">
-              العقارات المميزة
-            </h2>
-            <Star className="w-8 h-8 text-yellow-400 fill-current" />
+          <div className="inline-flex items-center gap-3 bg-white/80 backdrop-blur-xl rounded-full px-6 py-3 mb-6 shadow-lg">
+            <Star className="w-6 h-6 text-yellow-500 fill-current" />
+            <span className="text-gray-700 font-bold">العقارات المميزة</span>
           </div>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+          
+          <h2 className="text-5xl md:text-6xl font-black text-gray-800 heading-primary mb-6">
+            <span className="text-gradient">أفضل</span> العقارات
+            <br />
+            المتاحة الآن
+          </h2>
+          
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto text-body">
             اكتشف مجموعة مختارة من أفضل العقارات المتاحة، 
             تم اختيارها بعناية لتوفر لك تجربة سكنية استثنائية
           </p>
@@ -45,22 +49,28 @@ const FeaturedProperty = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16"
         >
-          <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 text-center">
-            <TrendingUp className="w-12 h-12 text-green-400 mx-auto mb-4" />
-            <div className="text-3xl font-bold text-white mb-2">95%</div>
-            <div className="text-gray-300">معدل الرضا</div>
+          <div className="glass-effect rounded-2xl p-8 text-center group hover:scale-105 transition-all duration-300">
+            <div className="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-green-200 transition-colors duration-300">
+              <TrendingUp className="w-8 h-8 text-green-600" />
+            </div>
+            <div className="text-4xl font-black text-gray-800 mb-2">95%</div>
+            <div className="text-gray-600 font-medium">معدل الرضا</div>
           </div>
           
-          <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 text-center">
-            <Award className="w-12 h-12 text-blue-400 mx-auto mb-4" />
-            <div className="text-3xl font-bold text-white mb-2">500+</div>
-            <div className="text-gray-300">عقار متاح</div>
+          <div className="glass-effect rounded-2xl p-8 text-center group hover:scale-105 transition-all duration-300">
+            <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-blue-200 transition-colors duration-300">
+              <Award className="w-8 h-8 text-blue-600" />
+            </div>
+            <div className="text-4xl font-black text-gray-800 mb-2">500+</div>
+            <div className="text-gray-600 font-medium">عقار متاح</div>
           </div>
           
-          <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 text-center">
-            <Star className="w-12 h-12 text-yellow-400 mx-auto mb-4" />
-            <div className="text-3xl font-bold text-white mb-2">4.9</div>
-            <div className="text-gray-300">تقييم العملاء</div>
+          <div className="glass-effect rounded-2xl p-8 text-center group hover:scale-105 transition-all duration-300">
+            <div className="w-16 h-16 bg-yellow-100 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-yellow-200 transition-colors duration-300">
+              <Star className="w-8 h-8 text-yellow-600 fill-current" />
+            </div>
+            <div className="text-4xl font-black text-gray-800 mb-2">4.9</div>
+            <div className="text-gray-600 font-medium">تقييم العملاء</div>
           </div>
         </motion.div>
 
@@ -80,7 +90,8 @@ const FeaturedProperty = () => {
               className="relative"
             >
               {/* شارة مميز */}
-              <div className="absolute -top-2 -right-2 z-10 bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg">
+              <div className="absolute -top-3 -right-3 z-10 bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg">
+                <Star className="w-4 h-4 inline mr-1" />
                 مميز
               </div>
               
@@ -100,12 +111,11 @@ const FeaturedProperty = () => {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="text-center mt-12"
+          className="text-center mt-16"
         >
-          <button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 
-                           text-white px-8 py-4 rounded-xl font-semibold transition-all duration-200 
-                           hover:scale-105 shadow-lg hover:shadow-blue-500/25">
+          <button className="btn-primary group">
             عرض جميع العقارات
+            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
           </button>
         </motion.div>
       </div>

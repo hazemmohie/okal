@@ -8,12 +8,12 @@ import Units from "./pages/Units";
 import { AppProvider } from "./components/RealEstateContext";
 
 /**
- * المكون الرئيسي للتطبيق - يحتوي على جميع الصفحات والتنقل
+ * المكون الرئيسي للتطبيق - يحتوي على جميع الصفحات والتنقل - تصميم احترافي
  */
 function App() {
   return (
     <AppProvider>
-      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900">
+      <div className="min-h-screen gradient-bg">
         <Header />
         <main>
           <Routes>

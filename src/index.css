@@ -7,63 +7,111 @@ body::-webkit-scrollbar {
     width: 0;
 }
 
-/* أنماط مخصصة للعقارات */
+/* أنماط مخصصة للعقارات - تصميم احترافي */
 @layer components {
   .property-card {
-    @apply bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-6 cursor-pointer 
-           hover:bg-white/15 hover:border-white/30 transition-all duration-300
-           shadow-lg hover:shadow-xl;
+    @apply bg-white/95 backdrop-blur-xl border border-white/30 rounded-2xl p-6 cursor-pointer 
+           hover:bg-white hover:border-blue-200 transition-all duration-500 ease-out
+           shadow-xl hover:shadow-2xl hover:shadow-blue-500/20
+           hover:-translate-y-2 hover:scale-[1.02];
   }
   
   .gradient-bg {
-    @apply bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900;
+    @apply bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100;
+  }
+  
+  .gradient-bg-dark {
+    @apply bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900;
   }
   
   .glass-effect {
-    @apply bg-white/10 backdrop-blur-md border border-white/20;
+    @apply bg-white/80 backdrop-blur-xl border border-white/40 shadow-xl;
+  }
+  
+  .glass-effect-dark {
+    @apply bg-white/10 backdrop-blur-xl border border-white/20 shadow-xl;
   }
   
   .btn-primary {
-    @apply bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg 
-           font-semibold transition-all duration-200 hover:scale-105 
-           shadow-lg hover:shadow-blue-500/25;
+    @apply bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 
+           text-white px-8 py-4 rounded-xl font-bold transition-all duration-300 
+           hover:scale-105 shadow-lg hover:shadow-blue-500/30
+           transform hover:-translate-y-1;
   }
   
   .btn-secondary {
-    @apply bg-white/10 hover:bg-white/20 text-white px-6 py-3 rounded-lg 
-           font-semibold transition-all duration-200 backdrop-blur-md 
-           border border-white/20;
+    @apply bg-white/90 hover:bg-white text-gray-800 px-8 py-4 rounded-xl 
+           font-bold transition-all duration-300 backdrop-blur-xl 
+           border border-gray-200 shadow-lg hover:shadow-xl
+           hover:scale-105 transform hover:-translate-y-1;
+  }
+  
+  .btn-outline {
+    @apply bg-transparent hover:bg-white/10 text-white px-8 py-4 rounded-xl 
+           font-bold transition-all duration-300 backdrop-blur-xl 
+           border-2 border-white/30 hover:border-white/50
+           hover:scale-105 transform hover:-translate-y-1;
+  }
+  
+  .hero-gradient {
+    @apply bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-800;
+  }
+  
+  .card-gradient {
+    @apply bg-gradient-to-br from-white to-blue-50;
+  }
+  
+  .text-gradient {
+    @apply bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent;
+  }
+  
+  .section-padding {
+    @apply py-20 px-4;
+  }
+  
+  .container-custom {
+    @apply max-w-7xl mx-auto;
   }
 }
 
-/* تأثيرات الحركة المخصصة */
+/* تأثيرات الحركة المخصصة - محسنة */
 @layer utilities {
   .animate-fade-in {
-    animation: fadeIn 0.6s ease-in-out;
+    animation: fadeIn 0.8s ease-out;
   }
   
   .animate-slide-up {
-    animation: slideUp 0.6s ease-out;
+    animation: slideUp 0.8s ease-out;
   }
   
   .animate-slide-right {
-    animation: slideRight 0.6s ease-out;
+    animation: slideRight 0.8s ease-out;
+  }
+  
+  .animate-bounce-gentle {
+    animation: bounceGentle 2s ease-in-out infinite;
+  }
+  
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
   }
 }
 
 @keyframes fadeIn {
   from {
     opacity: 0;
+    transform: translateY(20px);
   }
   to {
     opacity: 1;
+    transform: translateY(0);
   }
 }
 
 @keyframes slideUp {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(40px);
   }
   to {
     opacity: 1;
@@ -74,7 +122,7 @@ body::-webkit-scrollbar {
 @keyframes slideRight {
   from {
     opacity: 0;
-    transform: translateX(30px);
+    transform: translateX(40px);
   }
   to {
     opacity: 1;
@@ -82,37 +130,126 @@ body::-webkit-scrollbar {
   }
 }
 
-/* تحسينات للخطوط العربية */
+@keyframes bounceGentle {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+/* تحسينات للخطوط العربية - خطوط احترافية */
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Inter', 'Segoe UI', 'Tahoma', 'Geneva', 'Verdana', sans-serif;
   direction: rtl;
+  font-feature-settings: 'liga' 1, 'kern' 1;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* تحسينات للشاشات الصغيرة */
 @media (max-width: 768px) {
-  .container {
-    @apply px-4;
+  .container-custom {
+    @apply px-6;
   }
   
   .property-card {
     @apply p-4;
   }
+  
+  .section-padding {
+    @apply py-12;
+  }
 }
 
-/* تأثيرات خاصة للبطاقات */
-.property-card:hover {
-  transform: translateY(-5px);
+/* تأثيرات خاصة للبطاقات - محسنة */
+.property-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.property-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  transition: left 0.5s;
+}
+
+.property-card:hover::before {
+  left: 100%;
 }
 
 /* تحسينات للشريط الجانبي */
 .sidebar-overlay {
-  backdrop-filter: blur(8px);
-  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(12px);
+  background: rgba(0, 0, 0, 0.6);
 }
 
 /* تحسينات للأزرار */
 button:focus {
   outline: none;
-  ring: 2px;
-  ring-color: rgba(59, 130, 246, 0.5);
+  ring: 3px;
+  ring-color: rgba(59, 130, 246, 0.3);
+}
+
+/* تأثيرات خاصة للصور */
+.image-hover {
+  transition: transform 0.5s ease, filter 0.5s ease;
+}
+
+.image-hover:hover {
+  transform: scale(1.05);
+  filter: brightness(1.1);
+}
+
+/* تحسينات للعناصر التفاعلية */
+.interactive-element {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.interactive-element:hover {
+  transform: translateY(-2px);
+}
+
+/* تأثيرات الظلال المحسنة */
+.shadow-custom {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.shadow-custom-hover {
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+/* تحسينات للخطوط */
+.heading-primary {
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+}
+
+.heading-secondary {
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  line-height: 1.3;
+}
+
+.text-body {
+  font-weight: 400;
+  line-height: 1.6;
+  letter-spacing: 0.01em;
 }
