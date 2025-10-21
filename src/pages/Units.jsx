@@ -5,7 +5,7 @@ import PropertiesGrid from "../components/PropertiesGrid";
 import SearchAndFilters from "../components/SearchAndFilters";
 
 /**
- * صفحة الوحدات - تعرض البيانات من ملف Excel مع واجهة محسنة
+ * صفحة الوحدات - تعرض البيانات من ملف Excel مع واجهة محسنة - تصميم احترافي
  */
 function Units() {
   const [data, setData] = useState([]);
@@ -58,29 +58,38 @@ function Units() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900">
+    <div className="min-h-screen gradient-bg">
       {/* العنوان الرئيسي */}
-      <motion.div
-        initial={{ opacity: 0, y: -30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="text-center py-12"
-      >
-        <h1 className="text-5xl md:text-6xl font-bold text-white mb-4">
-          📊 بيانات الوحدات
-        </h1>
-        <p className="text-xl text-gray-300 max-w-2xl mx-auto px-4">
-          عرض شامل لجميع الوحدات المتاحة مع إمكانية البحث والفلترة المتقدمة
-        </p>
-      </motion.div>
+      <div className="section-padding">
+        <div className="container-custom">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-16"
+          >
+            <div className="inline-flex items-center gap-3 bg-white/80 backdrop-blur-xl rounded-full px-6 py-3 mb-6 shadow-lg">
+              <span className="text-gray-700 font-bold">📊 بيانات الوحدات</span>
+            </div>
+            
+            <h1 className="text-5xl md:text-6xl font-black text-gray-800 heading-primary mb-6">
+              <span className="text-gradient">بيانات</span> الوحدات
+              <br />
+              الحقيقية
+            </h1>
+            
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto text-body">
+              عرض شامل لجميع الوحدات المتاحة مع إمكانية البحث والفلترة المتقدمة
+            </p>
+          </motion.div>
 
-      {/* البحث والفلاتر */}
-      <div className="container mx-auto px-4">
-        <SearchAndFilters
-          onSearchChange={setSearchTerm}
-          onFiltersChange={setFilters}
-          properties={data}
-        />
+          {/* البحث والفلاتر */}
+          <SearchAndFilters
+            onSearchChange={setSearchTerm}
+            onFiltersChange={setFilters}
+            properties={data}
+          />
+        </div>
       </div>
 
       {/* شبكة العقارات */}
