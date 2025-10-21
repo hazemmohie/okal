@@ -2,7 +2,117 @@
 @tailwind components;
 @tailwind utilities;
 
-
-body::-webkit-scrollbar{
+/* إخفاء شريط التمرير */
+body::-webkit-scrollbar {
     width: 0;
+}
+
+/* أنماط مخصصة للعقارات */
+@layer components {
+  .property-card {
+    @apply bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-6 cursor-pointer 
+           hover:bg-white/15 hover:border-white/30 transition-all duration-300
+           shadow-lg hover:shadow-xl;
+  }
+  
+  .gradient-bg {
+    @apply bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900;
+  }
+  
+  .glass-effect {
+    @apply bg-white/10 backdrop-blur-md border border-white/20;
+  }
+  
+  .btn-primary {
+    @apply bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg 
+           font-semibold transition-all duration-200 hover:scale-105 
+           shadow-lg hover:shadow-blue-500/25;
+  }
+  
+  .btn-secondary {
+    @apply bg-white/10 hover:bg-white/20 text-white px-6 py-3 rounded-lg 
+           font-semibold transition-all duration-200 backdrop-blur-md 
+           border border-white/20;
+  }
+}
+
+/* تأثيرات الحركة المخصصة */
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-in-out;
+  }
+  
+  .animate-slide-up {
+    animation: slideUp 0.6s ease-out;
+  }
+  
+  .animate-slide-right {
+    animation: slideRight 0.6s ease-out;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* تحسينات للخطوط العربية */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  direction: rtl;
+}
+
+/* تحسينات للشاشات الصغيرة */
+@media (max-width: 768px) {
+  .container {
+    @apply px-4;
+  }
+  
+  .property-card {
+    @apply p-4;
+  }
+}
+
+/* تأثيرات خاصة للبطاقات */
+.property-card:hover {
+  transform: translateY(-5px);
+}
+
+/* تحسينات للشريط الجانبي */
+.sidebar-overlay {
+  backdrop-filter: blur(8px);
+  background: rgba(0, 0, 0, 0.5);
+}
+
+/* تحسينات للأزرار */
+button:focus {
+  outline: none;
+  ring: 2px;
+  ring-color: rgba(59, 130, 246, 0.5);
 }
