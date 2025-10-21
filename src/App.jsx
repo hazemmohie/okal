@@ -13,7 +13,7 @@ import { AppProvider } from "./components/RealEstateContext";
 function App() {
   return (
     <AppProvider>
-      <div className="min-h-screen gradient-bg">
+      <div className="min-h-screen bg-gray-50">
         <Header />
         <main>
           <Routes>

@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Menu, X, Home, Building, BarChart3, Phone, Mail } from "lucide-react";
+import { Menu, X, BarChart3, Database, Home, Building } from "lucide-react";
 
 /**
- * مكون الهيدر - شريط التنقل الرئيسي للموقع - تصميم احترافي
+ * مكون الهيدر - شريط التنقل الرئيسي لنظام إدارة البيانات
  */
 const Header = () => {
   const [openSidebar, setOpenSidebar] = useState(false);
@@ -15,8 +15,8 @@ const Header = () => {
 
   const navItems = [
     { path: "/", label: "الرئيسية", icon: Home },
-    { path: "/properties", label: "العقارات", icon: Building },
-    { path: "/units", label: "الوحدات", icon: BarChart3 },
+    { path: "/properties", label: "إدارة البيانات", icon: Database },
+    { path: "/units", label: "الوحدات", icon: Building },
   ];
 
   return (
@@ -25,19 +25,23 @@ const Header = () => {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.6 }}
-        className="glass-effect border-b border-gray-200 sticky top-0 z-50"
+        className="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-50"
       >
-        <div className="container-custom flex justify-between py-4 items-center">
+        <div className="max-w-7xl mx-auto px-6 flex justify-between py-4 items-center">
           {/* الشعار */}
           <motion.a
             href="/"
-            className="flex w-fit title-font font-medium items-center"
+            className="flex items-center gap-3"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <span className="text-3xl font-black text-gray-800">
-              🏠 Prime<span className="text-gradient">View</span>
-            </span>
+            <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg flex items-center justify-center">
+              <BarChart3 className="w-6 h-6 text-white" />
+            </div>
+            <div>
+              <h1 className="text-xl font-bold text-gray-800">نظام إدارة العقارات</h1>
+              <p className="text-xs text-gray-500">Real Estate Management System</p>
+            </div>
           </motion.a>
 
           {/* قائمة التنقل للشاشات الكبيرة */}
@@ -47,37 +51,25 @@ const Header = () => {
                 key={item.path}
                 to={item.path}
                 className={({ isActive }) =>
-                  `flex items-center gap-2 px-6 py-3 rounded-xl transition-all duration-300 font-bold
+                  `flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-200 font-medium
                    ${isActive
-                      ? 'bg-blue-600 text-white shadow-lg'
-                      : 'text-gray-700 hover:text-blue-600 hover:bg-blue-50'
+                      ? 'bg-blue-100 text-blue-600 font-semibold'
+                      : 'text-gray-600 hover:text-blue-600 hover:bg-gray-50'
                    }`
                 }
               >
-                <item.icon className="w-5 h-5" />
+                <item.icon className="w-4 h-4" />
                 {item.label}
               </NavLink>
             ))}
           </nav>
 
-          {/* معلومات التواصل للشاشات الكبيرة */}
-          <div className="hidden lg:flex items-center gap-4">
-            <div className="flex items-center gap-2 text-gray-600">
-              <Phone className="w-4 h-4" />
-              <span className="text-sm font-medium">+1 (555) 123-4567</span>
-            </div>
-            <div className="flex items-center gap-2 text-gray-600">
-              <Mail className="w-4 h-4" />
-              <span className="text-sm font-medium">info@primeview.com</span>
-            </div>
-          </div>
-
           {/* زر القائمة للشاشات الصغيرة */}
           <button
             onClick={handleSidebar}
-            className="md:hidden p-3 text-gray-700 hover:bg-gray-100 rounded-xl transition-colors duration-200"
+            className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
           >
-            {openSidebar ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {openSidebar ? <X className="w-6 h-6 text-gray-600" /> : <Menu className="w-6 h-6 text-gray-600" />}
           </button>
         </div>
 
@@ -87,19 +79,19 @@ const Header = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden glass-effect border-t border-gray-200"
+            className="md:hidden bg-white border-t border-gray-200"
           >
-            <nav className="flex flex-col p-6 space-y-3">
+            <nav className="px-6 py-4 space-y-2">
               {navItems.map((item) => (
                 <NavLink
                   key={item.path}
                   to={item.path}
                   onClick={() => setOpenSidebar(false)}
                   className={({ isActive }) =>
-                    `flex items-center gap-3 px-6 py-4 rounded-xl transition-all duration-300 font-bold
+                    `flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 font-medium
                      ${isActive
-                        ? 'bg-blue-600 text-white shadow-lg'
-                        : 'text-gray-700 hover:text-blue-600 hover:bg-blue-50'
+                        ? 'bg-blue-100 text-blue-600 font-semibold'
+                        : 'text-gray-600 hover:text-blue-600 hover:bg-gray-50'
                      }`
                   }
                 >
@@ -107,18 +99,6 @@ const Header = () => {
                   {item.label}
                 </NavLink>
               ))}
-              
-              {/* معلومات التواصل للشاشات الصغيرة */}
-              <div className="pt-4 border-t border-gray-200 space-y-3">
-                <div className="flex items-center gap-3 text-gray-600">
-                  <Phone className="w-5 h-5" />
-                  <span className="font-medium">+1 (555) 123-4567</span>
-                </div>
-                <div className="flex items-center gap-3 text-gray-600">
-                  <Mail className="w-5 h-5" />
-                  <span className="font-medium">info@primeview.com</span>
-                </div>
-              </div>
             </nav>
           </motion.div>
         )}
