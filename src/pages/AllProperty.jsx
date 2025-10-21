@@ -1,48 +1,54 @@
-/* eslint-disable react/no-unescaped-entities */
-
-import { useContext } from "react";
-import PropertiesItem from "../components/PropertiesItem";
-import Filter from "../components/Filter";
+import { useState, useContext } from "react";
+import { motion } from "framer-motion";
 import { AppContext } from "../components/RealEstateContext";
+import PropertiesGrid from "../components/PropertiesGrid";
+import SearchAndFilters from "../components/SearchAndFilters";
 
+/**
+ * صفحة عرض جميع العقارات - الصفحة الرئيسية لعرض العقارات مع البحث والفلاتر
+ */
 const AllProperty = () => {
-  const { filteredProperties } = useContext(AppContext);
+  const { propertydata } = useContext(AppContext);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filters, setFilters] = useState({
+    price: '',
+    location: '',
+    bedrooms: ''
+  });
 
   return (
-    <>
-      <section className="body-font max-w-7xl m-auto min-h-[76vh] text-slate-300">
-        <div className="flex flex-col items-center justify-center flex-wrap pt-10 px-5">
-          <div className="text-xl my-2">
-            <b>Select the Filter</b>
-          </div>
-          <Filter />
-        </div>
-        <div className="container px-5 py-10 mx-auto">
-          <div className="flex flex-wrap justify-center">
-            {filteredProperties.length === 0 ? (
-              <p className="text-center text-gray-500 text-lg py-12">
-                Sorry ! We don't have any house or flat that matches your
-                preferences.
-              </p>
-            ) : (
-              filteredProperties.map((property) => (
-                <PropertiesItem
-                  key={property.id}
-                  id={property.id}
-                  propertyName={property.propertyName}
-                  priceInLakhs={property.priceInLakhs}
-                  price={property.price}
-                  bedrooms={property.bedrooms}
-                  bathrooms={property.bathrooms}
-                  location={property.location}
-                  imageURL={property.imageURL}
-                />
-              ))
-            )}
-          </div>
-        </div>
-      </section>
-    </>
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900">
+      {/* العنوان الرئيسي */}
+      <motion.div
+        initial={{ opacity: 0, y: -30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        className="text-center py-12"
+      >
+        <h1 className="text-5xl md:text-6xl font-bold text-white mb-4">
+          🏠 عقاراتنا المميزة
+        </h1>
+        <p className="text-xl text-gray-300 max-w-2xl mx-auto px-4">
+          اكتشف مجموعة واسعة من العقارات المختارة بعناية لتلبية جميع احتياجاتك
+        </p>
+      </motion.div>
+
+      {/* البحث والفلاتر */}
+      <div className="container mx-auto px-4">
+        <SearchAndFilters
+          onSearchChange={setSearchTerm}
+          onFiltersChange={setFilters}
+          properties={propertydata}
+        />
+      </div>
+
+      {/* شبكة العقارات */}
+      <PropertiesGrid
+        properties={propertydata}
+        searchTerm={searchTerm}
+        filters={filters}
+      />
+    </div>
   );
 };
 
